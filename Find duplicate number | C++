@@ -1,0 +1,57 @@
+#include<iostream>
+using namespace std;
+void findduplicate(int arr[],int size)
+{
+	/*for storing index*/int index[50],
+	/*stroing alreadycheked number*/alreadychecked[50];
+	int indexctr=0, aci=0;
+	for(int i=0;i<size;i++)
+	{
+		int num=arr[i],flag=0;
+		//check if number is already checked
+		for(int j=0;j<aci;j++)
+		{
+			if(num==alreadychecked[j])
+			flag=1;
+		}
+		if(flag==1)
+		continue;
+		alreadychecked[aci++]=num;
+		//checking the duplicate number and storing indexs
+		int temp=indexctr,flag1=0;
+		for(int k=i+1;k<size;k++)
+		{
+			if(num==arr[k])
+			{
+				flag1=1;
+			index[indexctr++]=k;
+			}
+		}
+		if(flag1==1)
+		{
+		cout<<"\tNumber "<<num<<" appeared "<<(indexctr+1)-(temp)<<" times\n\tThere locations are\n";
+		//printing initial location
+	cout<<"\tarr["<<i<<"]="<<num<<endl;
+	   for(int m=temp;m<indexctr;m++)
+		{		cout<<"\tarr["<<index[m]<<"]="<<num<<endl;
+		}
+		}
+	}
+
+	
+}
+int main()
+{
+	int size,arr[50];
+	cout<<"\tEnter the sizs of array\n\t";
+	
+	cin>>size;
+	cout<<"\tEnter the elements in the array\n";
+	for(int i=0;i<size;i++)
+	{
+		cout<<"\tarr["<<i<<"]=";
+		cin>>arr[i];
+		cout<<endl;
+	}
+	findduplicate(arr,size);
+}
